@@ -18,3 +18,9 @@ class Expense(models.Model):
 
     def __str__(self):
         return f"{self.category} - ₹{self.amount} on {self.date}"
+
+
+class IdempotencyKey(models.Model):
+    key = models.CharField(max_length=255, unique=True)
+    expense = models.ForeignKey(Expense, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
