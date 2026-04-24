@@ -38,6 +38,12 @@ class ExpenseAPITest(TestCase):
         resp = self.client.post("/api/expenses", payload, format="json")
         self.assertEqual(resp.status_code, 400)
 
+    def test_reject_future_date(self):
+        payload = {**self.valid_payload, "date": "2099-01-01"}
+        resp = self.client.post("/api/expenses", payload, format="json")
+        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(Expense.objects.count(), 0)
+
     def test_reject_missing_date(self):
         payload = {**self.valid_payload}
         del payload["date"]

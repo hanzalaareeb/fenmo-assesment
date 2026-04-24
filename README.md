@@ -37,6 +37,7 @@ uv run python manage.py test expenses
 - Idempotency: POST accepts an `Idempotency-Key` header. The server stores the key in an `IdempotencyKey` table linked to the created expense. Duplicate requests return the original expense. The unique constraint + `transaction.atomic()` handles race conditions.
 - SQLite: Sufficient for this scope. Easy to set up, no external dependencies.
 - Vanilla JS frontend: Single HTML template with no build step.
+- Validations Checks: No future date, No negetive ammount, no empty fields.
 
 ## What I Intentionally Did Not Do
 

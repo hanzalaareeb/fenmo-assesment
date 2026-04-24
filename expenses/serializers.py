@@ -1,3 +1,5 @@
+from datetime import date
+
 from rest_framework import serializers
 from .models import Expense
 
@@ -11,4 +13,9 @@ class ExpenseSerializer(serializers.ModelSerializer):
     def validate_amount(self, value):
         if value <= 0:
             raise serializers.ValidationError("Amount must be positive.")
+        return value
+
+    def validate_date(self, value): # no future date, validation for future date
+        if value > date.today():
+            raise serializers.ValidationError("Date cannot be in the future.")
         return value
