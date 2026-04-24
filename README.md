@@ -43,4 +43,4 @@ uv run python manage.py test expenses
 - Auth & User Managment: It would take time, and add too many debugging steps. Will add it in later iterations,
 - Async Tasks: No heavy task processing requires,
 - Full Idempotency Persistence: Overkill for the scope.
-- Complex UI/UX: 
+- Complex UI/UX:
